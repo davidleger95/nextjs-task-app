@@ -19,9 +19,10 @@ export const tasksSlice = createSlice({
 });
 
 /* Types */
+export type Status = 'todo' | 'complete';
 export type Task = {
   id: string;
-  status: 'todo' | 'complete';
+  status: Status;
   title: string;
   description?: string;
   dueDate?: Date;

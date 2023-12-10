@@ -4,7 +4,7 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const links = [{ path: '/', name: 'Home' }];
+const links = [{ path: '/', name: 'Tasks' }];
 
 export const Nav = () => {
   const pathname = usePathname();
