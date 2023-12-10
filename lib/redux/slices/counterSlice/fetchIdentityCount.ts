@@ -5,8 +5,8 @@ export const fetchIdentityCount = async (
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ amount }),
-  })
-  const result = await response.json()
+  });
+  const result = await response.json();
 
-  return result
-}
+  return result;
+};
