@@ -15,6 +15,7 @@ export const tasksSlice = createSlice({
       };
       state.push(task);
     },
+    clear: (state) => (state = []),
   },
 });
 

@@ -1,6 +1,14 @@
 'use client';
 
-import { Badge, Button, Card, Flex, Grid, Separator } from '@radix-ui/themes';
+import {
+  Badge,
+  Button,
+  Card,
+  Flex,
+  Grid,
+  Separator,
+  Text,
+} from '@radix-ui/themes';
 import {
   selectTasksTotalCount,
   selectAllTasks,
@@ -24,14 +32,36 @@ const StatusBadge = ({ status }: StatusBadgeProps) => {
   return <Badge color={badgeColorMap[status]}>{status}</Badge>;
 };
 
-export default function TaskList() {
+const EmptyTasksList = () => {
+  const dispatch = useDispatch();
+  const addTask = () => dispatch(tasksSlice.actions.add({ title: 'item' }));
+  return (
+    <Card>
+      <Flex direction="column" gap="4" p="4" align="center">
+        <Text align="center">You have no tasks to do.</Text>
+
+        <Button type="button" onClick={addTask}>
+          Add a task
+        </Button>
+      </Flex>
+    </Card>
+  );
+};
+
+export default function Tasks() {
   const dispatch = useDispatch();
   const totalCount = useSelector(selectTasksTotalCount);
   const tasks = useSelector(selectAllTasks);
 
   const addTask = () => dispatch(tasksSlice.actions.add({ title: 'item' }));
+  const clearAllTasks = () => dispatch(tasksSlice.actions.clear());
+
+  if (totalCount === 0) {
+    return <EmptyTasksList />;
+  }
+
   return (
-    <Grid gap="2">
+    <Grid gap="4">
       Total count: {totalCount}
       <Card>
         {tasks.map((task, i) => (
@@ -53,9 +83,14 @@ export default function TaskList() {
           </>
         ))}
       </Card>
-      <Button type="button" onClick={addTask}>
-        Add
-      </Button>
+      <Flex align="start" gap="2">
+        <Button type="button" onClick={addTask}>
+          Add
+        </Button>
+        <Button type="button" color="red" onClick={clearAllTasks}>
+          Clear List
+        </Button>
+      </Flex>
     </Grid>
   );
 }

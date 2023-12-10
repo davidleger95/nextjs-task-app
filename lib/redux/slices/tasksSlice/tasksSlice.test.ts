@@ -1,5 +1,6 @@
 import { ReduxState } from 'lib/redux/store';
 import { selectTasksTotalCount, tasksSlice } from '.';
+import { mockTasks } from './tasks.mock';
 
 describe('tasksSlice', () => {
   it('has an initial state with no tasks', () => {
@@ -18,6 +19,12 @@ describe('tasksSlice', () => {
       expect(state).toHaveLength(1);
       expect(state[0].id).toBeDefined();
       expect(state[0].status).toBe('todo');
+    });
+
+    it('clears all tasks', () => {
+      const state = tasksSlice.reducer(mockTasks, tasksSlice.actions.clear());
+
+      expect(state).toHaveLength(0);
     });
   });
 
