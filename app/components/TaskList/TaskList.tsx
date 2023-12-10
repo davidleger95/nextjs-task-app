@@ -6,6 +6,7 @@ import {
   Card,
   Flex,
   Grid,
+  Heading,
   Separator,
   Text,
 } from '@radix-ui/themes';
@@ -16,6 +17,9 @@ import {
   useSelector,
   tasksSlice,
   Status,
+  selectCompleteTasks,
+  Task,
+  selectIncompleteTasks,
 } from '../../../lib/redux';
 import { BadgeProps } from '@radix-ui/themes/dist/cjs/components/badge';
 import Link from 'next/link';
@@ -34,8 +38,6 @@ const StatusBadge = ({ status }: StatusBadgeProps) => {
 };
 
 const EmptyTasksList = () => {
-  const dispatch = useDispatch();
-  const addTask = () => dispatch(tasksSlice.actions.add({ title: 'item' }));
   return (
     <Card>
       <Flex direction="column" gap="4" p="4" align="center">
@@ -49,40 +51,72 @@ const EmptyTasksList = () => {
   );
 };
 
+type TaskListProps = {
+  tasks: Task[];
+};
+
+const TaskList = ({ tasks }: TaskListProps) => {
+  const dispatch = useDispatch();
+  const completeTask = (id: string) =>
+    dispatch(tasksSlice.actions.update({ id, task: { status: 'complete' } }));
+  return (
+    <Card>
+      {tasks.map((task, i) => (
+        <div key={task.id}>
+          {i > 0 && <Separator size="4" />}
+          <Flex justify="between" gap="4" p="2">
+            <div>
+              <b>{task.title}</b>
+            </div>
+            {task.dueDate ? (
+              <time dateTime={task.dueDate?.toString()}>
+                {task.dueDate?.toLocaleString()}
+              </time>
+            ) : (
+              <div>No due date</div>
+            )}
+            <StatusBadge status={task.status} />
+            <Flex gap="2">
+              <Link href={`${task.id}/edit`}>Edit</Link>
+              <Button
+                type="button"
+                color="green"
+                size="1"
+                onClick={() => completeTask(task.id)}
+              >
+                Complete
+              </Button>
+            </Flex>
+          </Flex>
+        </div>
+      ))}
+    </Card>
+  );
+};
+
 export default function Tasks() {
   const dispatch = useDispatch();
   const totalCount = useSelector(selectTasksTotalCount);
-  const tasks = useSelector(selectAllTasks);
+  const completedTasks = useSelector(selectCompleteTasks);
+  const incompleteTasks = useSelector(selectIncompleteTasks);
 
   const clearAllTasks = () => dispatch(tasksSlice.actions.clear());
-
-  if (totalCount === 0) {
-    return <EmptyTasksList />;
-  }
 
   return (
     <Grid gap="4">
       Total count: {totalCount}
-      <Card>
-        {tasks.map((task, i) => (
-          <div key={task.id}>
-            {i > 0 && <Separator size="4" />}
-            <Flex justify="between" gap="4" p="2">
-              <div>
-                <b>{task.title}</b>
-              </div>
-              {task.dueDate ? (
-                <time dateTime={task.dueDate?.toString()}>
-                  {task.dueDate?.toLocaleString()}
-                </time>
-              ) : (
-                <div>No due date</div>
-              )}
-              <StatusBadge status={task.status} />
-            </Flex>
-          </div>
-        ))}
-      </Card>
+      <Heading>Todo</Heading>
+      {incompleteTasks.length === 0 ? (
+        <EmptyTasksList />
+      ) : (
+        <TaskList tasks={incompleteTasks} />
+      )}
+      {completedTasks.length > 0 && (
+        <>
+          <Heading>Completed</Heading>
+          <TaskList tasks={completedTasks} />
+        </>
+      )}
       <Flex align="start" gap="2">
         <Link type="button" href="/add">
           Add a task

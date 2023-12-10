@@ -16,6 +16,13 @@ export const tasksSlice = createSlice({
       state.push(task);
     },
     clear: (state) => (state = []),
+    update: (
+      state,
+      action: PayloadAction<{ id: string; task: Partial<Omit<Task, 'id'>> }>
+    ) => {
+      const index = state.findIndex((task) => task.id === action.payload.id);
+      state[index] = { ...state[index], ...action.payload.task };
+    },
   },
 });
 
