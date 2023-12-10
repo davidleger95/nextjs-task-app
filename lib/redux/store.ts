@@ -3,6 +3,7 @@ import {
   configureStore,
   type ThunkAction,
   type Action,
+  getDefaultMiddleware,
 } from '@reduxjs/toolkit';
 import {
   useSelector as useReduxSelector,
@@ -15,6 +16,11 @@ import { reducer } from './rootReducer';
 
 export const reduxStore = configureStore({
   reducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: ['persist/PERSIST'],
+    },
+  }),
 });
 export const useDispatch = () => useReduxDispatch<ReduxDispatch>();
 export const useSelector: TypedUseSelectorHook<ReduxState> = useReduxSelector;

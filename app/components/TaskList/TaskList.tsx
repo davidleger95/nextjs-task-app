@@ -18,6 +18,7 @@ import {
   Status,
 } from '../../../lib/redux';
 import { BadgeProps } from '@radix-ui/themes/dist/cjs/components/badge';
+import Link from 'next/link';
 
 const badgeColorMap: Record<Status, BadgeProps['color']> = {
   complete: 'green',
@@ -40,9 +41,9 @@ const EmptyTasksList = () => {
       <Flex direction="column" gap="4" p="4" align="center">
         <Text align="center">You have no tasks to do.</Text>
 
-        <Button type="button" onClick={addTask}>
+        <Link type="button" href="/add">
           Add a task
-        </Button>
+        </Link>
       </Flex>
     </Card>
   );
@@ -53,7 +54,6 @@ export default function Tasks() {
   const totalCount = useSelector(selectTasksTotalCount);
   const tasks = useSelector(selectAllTasks);
 
-  const addTask = () => dispatch(tasksSlice.actions.add({ title: 'item' }));
   const clearAllTasks = () => dispatch(tasksSlice.actions.clear());
 
   if (totalCount === 0) {
@@ -65,7 +65,7 @@ export default function Tasks() {
       Total count: {totalCount}
       <Card>
         {tasks.map((task, i) => (
-          <>
+          <div key={task.id}>
             {i > 0 && <Separator size="4" />}
             <Flex justify="between" gap="4" p="2">
               <div>
@@ -80,13 +80,13 @@ export default function Tasks() {
               )}
               <StatusBadge status={task.status} />
             </Flex>
-          </>
+          </div>
         ))}
       </Card>
       <Flex align="start" gap="2">
-        <Button type="button" onClick={addTask}>
-          Add
-        </Button>
+        <Link type="button" href="/add">
+          Add a task
+        </Link>
         <Button type="button" color="red" onClick={clearAllTasks}>
           Clear List
         </Button>
