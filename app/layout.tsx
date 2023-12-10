@@ -7,19 +7,19 @@ import './styles/globals.css';
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <Providers>
-      <html lang="en">
-        <body>
-          <Theme>
+    <html lang="en">
+      <body>
+        <Theme>
+          <Providers>
             <Grid>
               <Nav />
               <Container>
                 <main>{props.children}</main>
               </Container>
             </Grid>
-          </Theme>
-        </body>
-      </html>
-    </Providers>
+          </Providers>
+        </Theme>
+      </body>
+    </html>
   );
 }

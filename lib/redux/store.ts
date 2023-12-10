@@ -21,7 +21,10 @@ export const useSelector: TypedUseSelectorHook<ReduxState> = useReduxSelector;
 
 /* Types */
 export type ReduxStore = typeof reduxStore;
-export type ReduxState = ReturnType<typeof reduxStore.getState>;
+export type ReduxState = Omit<
+  ReturnType<typeof reduxStore.getState>,
+  '_persist'
+>;
 export type ReduxDispatch = typeof reduxStore.dispatch;
 export type ReduxThunkAction<ReturnType = void> = ThunkAction<
   ReturnType,

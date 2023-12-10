@@ -8,8 +8,8 @@ Initially cloned from the [Next.js `with-redux` example](https://github.com/verc
 - [x] Add custom configs/tooling that I like to use for better DX
 - [x] Add Vitest for unit testing
 - [x] Remove boilerplate code from the example
-- [ ] Add Radix UI
-- [ ] Setup redux store with persisted state in localstorage
+- [x] Add Radix UI
+- [x] Setup redux store with persisted state in localstorage
 - [ ] Build Task List UI
 - [ ] Build Add Task UI
 - [ ] Build Edit Task UI
