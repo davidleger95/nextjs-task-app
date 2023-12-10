@@ -1,5 +1,4 @@
 import EditTask from 'app/components/EditTask/EditTask';
-import { useRouter } from 'next/navigation';
 
 type Props = {
   params: { id: string };

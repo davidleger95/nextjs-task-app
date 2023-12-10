@@ -1,7 +1,11 @@
-import AddTask from 'app/components/AddTask/AddTask';
+import ViewTask from 'app/components/ViewTask/ViewTask';
 
-export default function AddTaskPage() {
-  return <AddTask />;
+type Props = {
+  params: { id: string };
+};
+
+export default function ViewTaskPage({ params }: Props) {
+  return <ViewTask id={params.id} />;
 }
 
 export const metadata = {
