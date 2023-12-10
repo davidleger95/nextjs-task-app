@@ -5,9 +5,9 @@ Initially cloned from the [Next.js `with-redux` example](https://github.com/verc
 ## Development Plan
 
 - [x] Deploy app to Vercel
-- [ ] Add custom configs/tooling that I like to use for better DX
+- [x] Add custom configs/tooling that I like to use for better DX
 - [ ] Add Vitest for unit testing
-- [ ] Remove boilerplate code from the example
+- [x] Remove boilerplate code from the example
 - [ ] Add Radix UI
 - [ ] Setup redux store with persisted state in localstorage
 - [ ] Build Task List UI
