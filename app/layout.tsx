@@ -1,4 +1,4 @@
-import { Providers } from '@/lib/providers';
+import { Providers } from '../lib/providers';
 import { Nav } from './components/Nav/Nav';
 
 import './styles/globals.css';

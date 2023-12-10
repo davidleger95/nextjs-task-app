@@ -1,3 +1,3 @@
-import type { ReduxState } from '@/lib/redux';
+import type { ReduxState } from '../../';
 
-export const selectCount = (state: ReduxState) => state.tasks.length;
+export const selectTasksTotalCount = (state: ReduxState) => state.tasks.length;
