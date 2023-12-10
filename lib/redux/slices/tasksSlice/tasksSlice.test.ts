@@ -9,7 +9,16 @@ describe('tasksSlice', () => {
   });
 
   describe('actions', () => {
-    it.todo('adds a task to the state');
+    it('adds a task to the state with default values', () => {
+      const state = tasksSlice.reducer(
+        [],
+        tasksSlice.actions.add({ title: 'First todo' })
+      );
+
+      expect(state).toHaveLength(1);
+      expect(state[0].id).toBeDefined();
+      expect(state[0].status).toBe('todo');
+    });
   });
 
   describe('selectors', () => {

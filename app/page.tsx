@@ -1,7 +1,7 @@
-import { Button } from '@radix-ui/themes';
+import TaskList from './components/TaskList/TaskList';
 
 export default function IndexPage() {
-  return <div>Page</div>;
+  return <TaskList />;
 }
 
 export const metadata = {
