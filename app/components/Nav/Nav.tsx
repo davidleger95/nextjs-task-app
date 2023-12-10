@@ -1,5 +1,6 @@
 'use client';
 
+import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -9,16 +10,18 @@ export const Nav = () => {
   const pathname = usePathname();
 
   return (
-    <nav>
-      {links.map((link) => (
-        <Link
-          key={link.path}
-          href="/"
-          aria-current={pathname === link.path ? 'page' : undefined}
-        >
-          {link.name}
-        </Link>
-      ))}
-    </nav>
+    <NavigationMenu.Root>
+      <NavigationMenu.List>
+        {links.map((link) => (
+          <NavigationMenu.Item key={link.path}>
+            <Link legacyBehavior passHref href="/">
+              <NavigationMenu.Link active={pathname === link.path}>
+                {link.name}
+              </NavigationMenu.Link>
+            </Link>
+          </NavigationMenu.Item>
+        ))}
+      </NavigationMenu.List>
+    </NavigationMenu.Root>
   );
 };
