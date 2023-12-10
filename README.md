@@ -6,7 +6,7 @@ Initially cloned from the [Next.js `with-redux` example](https://github.com/verc
 
 - [x] Deploy app to Vercel
 - [x] Add custom configs/tooling that I like to use for better DX
-- [ ] Add Vitest for unit testing
+- [x] Add Vitest for unit testing
 - [x] Remove boilerplate code from the example
 - [ ] Add Radix UI
 - [ ] Setup redux store with persisted state in localstorage
