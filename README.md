@@ -2,6 +2,11 @@
 
 Initially cloned from the [Next.js `with-redux` example](https://github.com/vercel/next.js/tree/canary/examples/with-redux)
 
+## Links
+
+- [Demo](https://www.loom.com/share/bd6d2db4de0a4273a73ddd86c8286bef)
+- [Deployed App](https://nextjs-task-app-opal.vercel.app/)
+
 ## Running the app locally
 
 Install dependencies:
@@ -39,9 +44,6 @@ npm test
 - [x] Update README with instructions and added context for decisions
 
 ## Notes
-
-- [Demo](https://www.loom.com/share/bd6d2db4de0a4273a73ddd86c8286bef)
-- [Deployed App](https://nextjs-task-app-opal.vercel.app/)
 
 ### Successes
 
