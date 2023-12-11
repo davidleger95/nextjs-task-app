@@ -1,4 +1,4 @@
-import ViewTask from 'app/components/ViewTask/ViewTask';
+import ViewTask from '../components/ViewTask/ViewTask';
 
 type Props = {
   params: { id: string };

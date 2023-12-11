@@ -1,19 +1,21 @@
 import { render } from '@testing-library/react';
-import TaskListPage from '../app/page';
+import EditTaskPage from '../app/[id]/edit/page';
+import { mockTasks } from '../lib/redux/slices/tasksSlice/tasks.mock';
 import { Provider } from 'react-redux';
 import { legacy_createStore as createStore } from '@reduxjs/toolkit';
 import { reducer } from '../lib/redux/rootReducer';
 
-describe('task list page', () => {
+const store = createStore(reducer, { tasks: mockTasks });
+
+describe('edit task page', () => {
   beforeAll(() => {
     vi.mock('next/navigation', () => require('next-router-mock'));
   });
 
   it('renders valid HTML', () => {
-    const store = createStore(reducer, { tasks: [] });
     const result = render(
       <Provider store={store}>
-        <TaskListPage />
+        <EditTaskPage params={{ id: mockTasks[0].id }} />
       </Provider>
     );
 

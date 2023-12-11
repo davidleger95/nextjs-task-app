@@ -43,6 +43,6 @@ export type Task = {
   status: Status;
   title: string;
   description?: string;
-  dueDate?: Date;
+  dueDate?: Date | string;
 };
 export type TasksSliceState = Task[];

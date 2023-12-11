@@ -1,4 +1,4 @@
-import EditTask from 'app/components/EditTask/EditTask';
+import EditTask from '../../components/EditTask/EditTask';
 
 type Props = {
   params: { id: string };
