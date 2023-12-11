@@ -93,7 +93,7 @@ export default function TaskForm(props: Props) {
                 <DatePicker
                   customInput={<TextField.Input />}
                   name="dueDate"
-                  selected={task.dueDate}
+                  selected={task.dueDate ? new Date(task.dueDate) : undefined}
                   onChange={(date) =>
                     setTask((prev) => ({ ...prev, dueDate: date || undefined }))
                   }

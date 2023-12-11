@@ -13,15 +13,20 @@ export const tasksSlice = createSlice({
         status: 'todo',
         ...action.payload,
       };
-      state.push(task);
+      return [...state, task];
     },
-    clear: (state) => (state = []),
+    clear: () => [],
+    clearCompleted: (state) => {
+      return [...state.filter((task) => task.status != 'complete')];
+    },
     update: (
       state,
       action: PayloadAction<{ id: string; task: Partial<Omit<Task, 'id'>> }>
     ) => {
       const index = state.findIndex((task) => task.id === action.payload.id);
-      state[index] = { ...state[index], ...action.payload.task };
+      const task: Task = { ...state[index], ...action.payload.task };
+
+      return [...state.slice(0, index), task, ...state.slice(index + 1)];
     },
   },
 });

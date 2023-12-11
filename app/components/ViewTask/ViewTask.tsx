@@ -3,11 +3,9 @@
 import {
   useDispatch,
   tasksSlice,
-  Task,
   selectAllTasks,
   useSelector,
 } from '../../../lib/redux';
-import { useRouter } from 'next/navigation';
 import { createSelector } from '@reduxjs/toolkit';
 import { Button, Card, Flex } from '@radix-ui/themes';
 import Link from 'next/link';

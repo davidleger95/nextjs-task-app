@@ -101,10 +101,17 @@ export default function Tasks() {
   const incompleteTasks = useSelector(selectIncompleteTasks);
 
   const clearAllTasks = () => dispatch(tasksSlice.actions.clear());
+  const clearCompletedTasks = () =>
+    dispatch(tasksSlice.actions.clearCompleted());
 
   return (
     <Grid gap="4">
       Total count: {totalCount}
+      <div>
+        <Button type="button" color="red" onClick={clearAllTasks}>
+          Clear All
+        </Button>
+      </div>
       <Heading>Todo</Heading>
       {incompleteTasks.length === 0 ? (
         <EmptyTasksList />
@@ -121,8 +128,8 @@ export default function Tasks() {
         <Link type="button" href="/add">
           Add a task
         </Link>
-        <Button type="button" color="red" onClick={clearAllTasks}>
-          Clear List
+        <Button type="button" color="red" onClick={clearCompletedTasks}>
+          Clear Completed
         </Button>
       </Flex>
     </Grid>
