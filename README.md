@@ -40,9 +40,8 @@ npm test
 
 ## Notes
 
-### [Deployed App](https://nextjs-task-app-opal.vercel.app/)
-
-<div style="position: relative; padding-bottom: 77.75377969762418%; height: 0;"><iframe src="https://www.loom.com/embed/bd6d2db4de0a4273a73ddd86c8286bef?sid=4486645e-46a8-4f51-8406-8cad2b18f854" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+- [Demo](https://www.loom.com/share/bd6d2db4de0a4273a73ddd86c8286bef)
+- [Deployed App](https://nextjs-task-app-opal.vercel.app/)
 
 ### Successes
 
