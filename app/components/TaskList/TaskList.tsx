@@ -11,8 +11,6 @@ import {
   Text,
 } from '@radix-ui/themes';
 import {
-  selectTasksTotalCount,
-  selectAllTasks,
   useDispatch,
   useSelector,
   tasksSlice,
@@ -20,6 +18,7 @@ import {
   selectCompleteTasks,
   Task,
   selectIncompleteTasks,
+  selectTaskCounts,
 } from '../../../lib/redux';
 import { BadgeProps } from '@radix-ui/themes/dist/cjs/components/badge';
 import Link from 'next/link';
@@ -96,7 +95,7 @@ const TaskList = ({ tasks }: TaskListProps) => {
 
 export default function Tasks() {
   const dispatch = useDispatch();
-  const totalCount = useSelector(selectTasksTotalCount);
+  const taskCounts = useSelector(selectTaskCounts);
   const completedTasks = useSelector(selectCompleteTasks);
   const incompleteTasks = useSelector(selectIncompleteTasks);
 
@@ -106,13 +105,14 @@ export default function Tasks() {
 
   return (
     <Grid gap="4">
-      Total count: {totalCount}
       <div>
         <Button type="button" color="red" onClick={clearAllTasks}>
           Clear All
         </Button>
       </div>
-      <Heading>Todo</Heading>
+      <Heading>
+        Todo ({taskCounts.todo}/{taskCounts.all})
+      </Heading>
       {incompleteTasks.length === 0 ? (
         <EmptyTasksList />
       ) : (
@@ -120,7 +120,9 @@ export default function Tasks() {
       )}
       {completedTasks.length > 0 && (
         <>
-          <Heading>Completed</Heading>
+          <Heading>
+            Completed ({taskCounts.todo}/{taskCounts.all})
+          </Heading>
           <TaskList tasks={completedTasks} />
         </>
       )}

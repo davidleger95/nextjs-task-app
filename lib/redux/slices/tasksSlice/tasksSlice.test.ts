@@ -1,5 +1,5 @@
 import { ReduxState } from 'lib/redux/store';
-import { selectTasksTotalCount, tasksSlice } from '.';
+import { selectAllTasks, tasksSlice } from '.';
 import { mockTasks } from './tasks.mock';
 
 describe('tasksSlice', () => {
@@ -29,10 +29,10 @@ describe('tasksSlice', () => {
   });
 
   describe('selectors', () => {
-    it('selectTasksTotalCount', () => {
+    it('selectAllTasks', () => {
       const state: ReduxState = { tasks: [] };
 
-      const result = selectTasksTotalCount(state);
+      const result = selectAllTasks(state);
       expect(result).toBe(0);
     });
   });
