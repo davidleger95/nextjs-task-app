@@ -13,7 +13,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
           <Providers>
             <Grid>
               <Nav />
-              <Container>
+              <Container p="4">
                 <main>{props.children}</main>
               </Container>
             </Grid>

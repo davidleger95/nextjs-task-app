@@ -6,6 +6,26 @@ body {
   font-family: system-ui, sans-serif;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer !important;
+}
+
+a[aria-current='page'] {
+  font-weight: 600;
+}
+
+button {
+  cursor: pointer !important;
+}
+
 * {
   box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

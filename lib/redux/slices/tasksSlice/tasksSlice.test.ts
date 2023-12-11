@@ -1,5 +1,11 @@
 import { ReduxState } from 'lib/redux/store';
-import { selectAllTasks, tasksSlice } from '.';
+import {
+  selectAllTasks,
+  selectCompleteTasks,
+  selectIncompleteTasks,
+  selectTaskCounts,
+  tasksSlice,
+} from '.';
 import { mockTasks } from './tasks.mock';
 
 describe('tasksSlice', () => {
@@ -30,10 +36,36 @@ describe('tasksSlice', () => {
 
   describe('selectors', () => {
     it('selectAllTasks', () => {
-      const state: ReduxState = { tasks: [] };
+      const state: ReduxState = { tasks: mockTasks };
 
       const result = selectAllTasks(state);
-      expect(result).toBe(0);
+      expect(result.length).toBe(3);
+    });
+    it('selectCompleteTasks', () => {
+      const state: ReduxState = { tasks: mockTasks };
+
+      const result = selectCompleteTasks(state);
+      expect(
+        result.find((task) => task.status != 'complete')
+      ).not.toBeDefined();
+    });
+    it('selectIncompleteTasks', () => {
+      const state: ReduxState = { tasks: mockTasks };
+
+      const result = selectIncompleteTasks(state);
+      expect(
+        result.find((task) => task.status === 'complete')
+      ).not.toBeDefined();
+    });
+    it('selectIncompleteTasks', () => {
+      const state: ReduxState = { tasks: mockTasks };
+
+      const result = selectTaskCounts(state);
+      expect(result).toEqual({
+        all: 3,
+        completed: 1,
+        todo: 2,
+      });
     });
   });
 });

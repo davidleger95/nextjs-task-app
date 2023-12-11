@@ -28,6 +28,11 @@ export const tasksSlice = createSlice({
 
       return [...state.slice(0, index), task, ...state.slice(index + 1)];
     },
+    delete: (state, action: PayloadAction<string>) => {
+      const index = state.findIndex((task) => task.id === action.payload);
+
+      return [...state.slice(0, index), ...state.slice(index + 1)];
+    },
   },
 });
 
